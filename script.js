@@ -42,7 +42,12 @@ form.addEventListener("submit", function(e) {
     return;
   }
 
-  usuarios.push({ nome, email });
+  if (editandoIndex !== null) {
+    usuarios[editandoIndex] = { nome, email };
+    editandoIndex = null;
+        } else {
+        usuarios.push({ nome, email });
+    }
 
   salvarLocalStorage();
   renderizar();
@@ -52,21 +57,23 @@ form.addEventListener("submit", function(e) {
   form.reset();
 });
 
-function editar(index) {
-  const usuario = usuarios[index];
-
-  document.getElementById("nome").value = usuario.nome;
-  document.getElementById("email").value = usuario.email;
-
-  deletar(index);
-}
-
 function deletar(index) {
   if (confirm("Tem certeza que deseja excluir?")) {
     usuarios.splice(index, 1);
     salvarLocalStorage();
     renderizar();
   }
+}
+
+let editandoIndex = null;
+
+function editar(index) {
+  const usuario = usuarios[index];
+
+  document.getElementById("nome").value = usuario.nome;
+  document.getElementById("email").value = usuario.email;
+
+  editandoIndex = index;
 }
 
 renderizar();
