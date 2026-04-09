@@ -31,21 +31,26 @@ form.addEventListener("submit", function(e) {
   const nome = document.getElementById("nome").value;
   const email = document.getElementById("email").value;
 
+  // ✅ VALIDAÇÃO
+  if (nome.trim() === "" || email.trim() === "") {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+
+  if (!email.includes("@")) {
+    alert("Por favor, insira um email válido.");
+    return;
+  }
+
   usuarios.push({ nome, email });
 
   salvarLocalStorage();
   renderizar();
 
+  alert("Usuário salvo com sucesso!");
+
   form.reset();
 });
-
-function deletar(index) {
-  if (confirm("Tem certeza que deseja excluir?")) {
-    usuarios.splice(index, 1);
-    salvarLocalStorage();
-    renderizar();
-  }
-}
 
 function editar(index) {
   const usuario = usuarios[index];
@@ -56,16 +61,12 @@ function editar(index) {
   deletar(index);
 }
 
-if (nome.trim() === "" || email.trim() === "") {
-  alert("Por favor, preencha todos os campos.");
-  return;
+function deletar(index) {
+  if (confirm("Tem certeza que deseja excluir?")) {
+    usuarios.splice(index, 1);
+    salvarLocalStorage();
+    renderizar();
+  }
 }
-
-if (!email.includes("@")) {
-  alert("Por favor, insira um email válido.");
-  return;
-}
-
-alert("Usuário salvo com sucesso!");
 
 renderizar();
