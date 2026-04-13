@@ -14,7 +14,7 @@ Aplicação web simples que permite cadastrar, listar, editar e excluir usuário
 - JavaScript
 
 ## 🌐 Acesse
-https://seuusuario.github.io/crud-usuarios/
+https://devcelo01.github.io/crud-usuarios/
 
 ## 📌 Objetivo
 Projeto desenvolvido para praticar lógica de programação, manipulação de DOM e persistência de dados.
